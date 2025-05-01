@@ -1,0 +1,1 @@
+[Zebar](https://github.com/glzr-io/zebar) is a nice configurable system bar for Windows. The deafult bar will pull remote scripts and JS packages and build the JS bundle on the fly. To avoid this I have created my own locally buildable version, using [Svelte](https://svelte.dev/) because I like it.
