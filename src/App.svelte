@@ -1,9 +1,9 @@
 <script>
-  import { onMount } from "svelte";
   import Network from "./lib/Network.svelte";
   import GlazeWmWorkspaces from "./lib/GlazeWmWorkspaces.svelte";
   import GlazeWmModes from "./lib/GlazeWmModes.svelte";
   import { createProviderGroup } from "zebar";
+    import Battery from "./lib/Battery.svelte";
 
   const providers = createProviderGroup({
     network: { type: "network" },
@@ -32,10 +32,13 @@
     </div>
     <div class="right">
       {#if output.glazewm}
-        <GlazeWmModes glazewm={output.glazewm} />
+        <GlazeWmModes glazewm={output.glazewm}/>
       {/if}
       {#if output.network}
         <Network network={output.network} />
+      {/if}
+      {#if output.battery}
+        <Battery battery={output.battery} />
       {/if}
     </div>
   </div>
@@ -55,7 +58,7 @@
   .right {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 16px;
   }
 
   .center {
