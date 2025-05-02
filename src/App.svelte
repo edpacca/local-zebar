@@ -35,7 +35,7 @@
         <GlazeWmModes glazewm={output.glazewm} />
       {/if}
       {#if output.network}
-        <Network networkOutput={output.network} />
+        <Network network={output.network} />
       {/if}
     </div>
   </div>
@@ -65,5 +65,6 @@
 
   .right {
     justify-self: end;
+    padding-right: 8px;
   }
 </style>
