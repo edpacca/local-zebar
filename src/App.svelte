@@ -4,6 +4,8 @@
   import GlazeWmModes from "./lib/GlazeWmModes.svelte";
   import { createProviderGroup } from "zebar";
     import Battery from "./lib/Battery.svelte";
+    import Cpu from "./lib/CPU.svelte";
+    import Memory from "./lib/Memory.svelte";
 
   const providers = createProviderGroup({
     network: { type: "network" },
@@ -36,6 +38,12 @@
       {/if}
       {#if output.network}
         <Network network={output.network} />
+        {/if}
+      {#if output.memory}
+         <Memory memory={output.memory} />
+      {/if}
+      {#if output.cpu}
+        <Cpu cpu={output.cpu} />
       {/if}
       {#if output.battery}
         <Battery battery={output.battery} />
