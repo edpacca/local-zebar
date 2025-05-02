@@ -3,7 +3,7 @@
 
     export let battery: BatteryOutput;
 
-    const iconClassIsCharging = "nf nf-md-power_plug charging-icon";
+    const iconClassIsCharging = "nf nf-md-lightning_bolt charging-icon"
     $: iconClassChargeAmount = `nf nf-fa-battery_${getBatteryIconValue(battery.chargePercent)}`
 
     const getBatteryIconValue = (percentage: number) => {
@@ -20,7 +20,7 @@
 </script>
 
 <div class="flex-gap battery">
-    {#if battery.isCharging}
+    {#if battery.isCharging || true}
         <i class={iconClassIsCharging}></i>
     {/if}
     <i class={iconClassChargeAmount}></i>
@@ -35,8 +35,7 @@
 
     .charging-icon {
         position: absolute;
-        font-size: 7px;
-        left: -8px;
-        top: 3px;
+        font-size: 8px;
+        left: -7px;
     }
 </style>
