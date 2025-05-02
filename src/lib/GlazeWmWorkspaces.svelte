@@ -27,7 +27,6 @@
     display: flex;
     align-items: center;
     gap: 4px;
-    background: red;
   }
 
   .workspace {
