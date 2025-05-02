@@ -1,25 +1,30 @@
 <script lang="ts">
+    import { checkThreshold } from "../utils";
+
     export let iconClass: string;
     export let value: number;
     export let isPercentage: boolean = false;
     export let warningValue: number | undefined = undefined;
-    export let alertValue: number | undefined = undefined;
+    export let severeWarningValue: number | undefined = undefined;
     export let warnAbove = true;
 
     $: isWarning =
         warningValue &&
-        ((warnAbove && value >= warningValue) ||
-            (!warnAbove && value <= warningValue));
+        checkThreshold(value, warningValue, warnAbove) &&
+        !isSevereWarning;
 
-    $: isAlerting =
-        alertValue &&
-        ((warnAbove && value >= alertValue) ||
-            (!warnAbove && value <= alertValue));
+    $: isSevereWarning =
+        severeWarningValue &&
+        checkThreshold(value, severeWarningValue, warnAbove);
 </script>
 
 <div class="icon-value">
-    <i class={iconClass} class:warn={isWarning} class:alert={isAlerting}></i>
-    <span class:warn={isWarning} class:alert={isAlerting}>
+    <i
+        class={iconClass}
+        class:warn={isWarning}
+        class:severe-warning={isSevereWarning}
+    ></i>
+    <span class:warn={isWarning} class:severe-warning={isSevereWarning}>
         {value}{#if isPercentage}%{/if}
     </span>
 </div>
