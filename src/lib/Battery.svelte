@@ -14,8 +14,8 @@
         if (percentage > 40)
             return "2";
         if (percentage > 20)
-            return "1";
-        return "0";
+            return "1 warn";
+        return "0 alert";
     }
 </script>
 

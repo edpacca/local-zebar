@@ -1,36 +1,43 @@
-@import url('./assets/webfont.css');
-@import url('./assets/colors.css');
-
+@import url("./assets/webfont.css");
+@import url("./assets/colors.css");
 
 i {
-  color: var(--lavender);
+    color: var(--lavender);
+}
+
+i.warn {
+  color: var(--warn);
+}
+
+i.alert {
+  color: var(--alert);
 }
 
 body {
-  color: var(--text);
-  font-family: ui-monospace, monospace;
-  font-size: 12px;
-  overflow: hidden;
+    color: var(--text);
+    font-family: ui-monospace, monospace;
+    font-size: 12px;
+    overflow: hidden;
 }
 
 div,
 span,
 p {
-  cursor: default;
-  user-select: none;
+    cursor: default;
+    user-select: none;
 }
 
 html,
 body,
 #root {
-  height: 100%;
+    height: 100%;
 }
 
 #root {
-  background: var(--base);
+    background: var(--base);
 }
 
-  button {
+button {
     background: var(--surface1);
     color: var(--text);
     border-radius: 2px;
@@ -38,21 +45,15 @@ body,
     padding: 4px 8px;
     border: 0;
     cursor: pointer;
-  }
+}
 
-  button:hover {
+button:hover {
     background-color: var(--lavender);
     color: var(--base);
-  }
+}
 
 .flex-gap {
-  display: flex;
-  flex-direction: row;
-  gap: 3px;
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
 }
-
-.cpu .high-usage {
-  color: #900029;
-}
-
-
