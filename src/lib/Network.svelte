@@ -49,5 +49,14 @@
 
 <div class="network">
     <i class={`nf nf-md-${iconClass}`}></i>
-    {ssid} | {ipaddr}
+    {ssid} |
+    <span>
+        {ipaddr}
+    </span>
 </div>
+
+<style>
+    span {
+        color: var(--subtext0);
+    }
+</style>

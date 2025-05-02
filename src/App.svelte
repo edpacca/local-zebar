@@ -6,17 +6,21 @@
     import Battery from "./lib/Battery.svelte";
     import Cpu from "./lib/CPU.svelte";
     import Memory from "./lib/Memory.svelte";
+    import Media from "./lib/Media.svelte";
+    import Audio from "./lib/Audio.svelte";
 
     const providers = createProviderGroup({
         network: { type: "network" },
         glazewm: { type: "glazewm" },
         cpu: { type: "cpu" },
-        date: { type: "date", formatting: "dd-MM - t" },
+        date: { type: "date", formatting: "dd/MM/yy   t" },
         battery: { type: "battery" },
         memory: { type: "memory" },
+        media: { type: "media" },
+        audio: { type: "audio"}
     });
     /**
-     * @type {{ network: import("zebar").NetworkOutput | null; glazewm: import("zebar").GlazeWmOutput | null; cpu: import("zebar").CpuOutput | null; date: import("zebar").DateOutput | null; battery: import("zebar").BatteryOutput | null; memory: import("zebar").MemoryOutput | null; }}
+     * @type {{ network: import("zebar").NetworkOutput | null; glazewm: import("zebar").GlazeWmOutput | null; cpu: import("zebar").CpuOutput | null; date: import("zebar").DateOutput | null; battery: import("zebar").BatteryOutput | null; memory: import("zebar").MemoryOutput | null; media: import("zebar").MediaOutput | null; audio: import("zebar").AudioOutput | null; }}
      */
     let output;
     $: providers.onOutput(() => (output = providers.outputMap));
@@ -29,8 +33,17 @@
                 <GlazeWmWorkspaces glazewm={output.glazewm} />
             {/if}
         </div>
-        <div class="center l-border"></div>
         <div class="right">
+            <div class="lr-border media">
+                {#each output.media?.allSessions ?? [] as session }
+                    <Media session={session}/>
+                {/each}
+                {#if output.audio}
+                    <Audio audio={output.audio}/>
+                {:else}
+                    <div>no audio</div>
+                {/if}
+            </div>
             {#if output.glazewm}
                 <GlazeWmModes glazewm={output.glazewm} />
             {/if}
@@ -58,34 +71,28 @@
 <style>
     .bar {
         display: grid;
-        grid-template-columns: 1fr auto 1fr;
+        grid-template-columns: 1fr auto;
         align-items: center;
         height: 100%;
         padding: 4px;
     }
 
     .left,
-    .center,
-    .right {
+    .right, .media {
         display: flex;
         align-items: center;
+        flex-direction: row;
         gap: 16px;
     }
 
-    .center {
-        justify-self: center;
-    }
-
-    .lr-border {
-      border-left: 1px solid var(--lavender);
-      border-right: 1px solid var(--lavender);
+    .left {
+        flex-grow: 1.5;
     }
 
     .diagnostics {
         display: flex;
         flex-direction: row;
         gap: 12px;
-        padding: 0 16px;
     }
 
     .right {
