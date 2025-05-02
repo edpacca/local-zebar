@@ -6,11 +6,11 @@ i {
 }
 
 .warn:not(.severe-warning) {
-  color: var(--warn) !important;
+    color: var(--warn) !important;
 }
 
 .severe-warning {
-  color: var(--severe-warning) !important;
+    color: var(--severe-warning) !important;
 }
 
 body {
@@ -55,5 +55,32 @@ button:hover {
 .flex-gap {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
     gap: 4px;
+}
+.lr-border {
+    border-left: 1px solid var(--lavender);
+    border-right: 1px solid var(--lavender);
+    padding: 0 16px;
+}
+.l-border {
+    border-left: 1px solid var(--lavender);
+    padding-left: 16px;
+}
+.r-border {
+    border-right: 1px solid var(--lavender);
+    padding-right: 16px;
+}
+
+.subtext {
+    color: var(--subtext0);
+}
+
+.italic {
+    font-style: italic;
+}
+
+.bold {
+    font-weight: 800;
 }
