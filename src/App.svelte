@@ -23,14 +23,20 @@
 {#if output}
   <div class="bar">
     <div class="left">
-      <GlazeWmWorkspaces glazewm={output.glazewm} />
+      {#if output.glazewm}
+        <GlazeWmWorkspaces glazewm={output.glazewm} />
+      {/if}
     </div>
     <div class="center">
 
     </div>
     <div class="right">
-      <GlazeWmModes glazewm={output.glazewm} />
-      <Network network={output.network} />
+      {#if output.glazewm}
+        <GlazeWmModes glazewm={output.glazewm} />
+      {/if}
+      {#if output.network}
+        <Network networkOutput={output.network} />
+      {/if}
     </div>
   </div>
 {/if}
@@ -41,7 +47,7 @@
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     height: 100%;
-    padding: 4px 1.5vw;
+    padding: 4px;
   }
 
   .left,
@@ -49,12 +55,12 @@
   .right {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 8px;
   }
 
   .center {
     justify-self: center;
-    border: 1px 0px solid var(--lavender);
+    border: 0px 1px solid var(--lavender);
   }
 
   .right {

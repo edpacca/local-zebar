@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { GlazeWmOutput } from "zebar";
 
-  export let glazewm: GlazeWmOutput | null;
+  export let glazewm: GlazeWmOutput;
 
   const focusWorkspace = (name: string) => {
     const command = `focus --workspace ${name}`;
@@ -9,20 +9,18 @@
   };
 </script>
 
-{#if glazewm}
-  <div class="workspaces">
-    {#each glazewm.currentWorkspaces as workspace}
-      <button
-        onclick={() => focusWorkspace(workspace.name)}
-        class="workspace"
-        class:focused={workspace.hasFocus}
-        class:displayed={workspace.isDisplayed}
-      >
-        {workspace.displayName ?? workspace.name}
-      </button>
-    {/each}
-  </div>
-{/if}
+<div class="workspaces">
+  {#each glazewm.currentWorkspaces as workspace}
+    <button
+      onclick={() => focusWorkspace(workspace.name)}
+      class="workspace"
+      class:focused={workspace.hasFocus}
+      class:displayed={workspace.isDisplayed}
+    >
+      {workspace.displayName ?? workspace.name}
+    </button>
+  {/each}
+</div>
 
 <style>
   .workspaces {
@@ -45,9 +43,9 @@
     background: var(--surface1);
   }
 
-  .focused, .workspace:hover {
+  .focused,
+  .workspace:hover {
     background: var(--lavender);
     color: var(--base);
   }
-
 </style>
