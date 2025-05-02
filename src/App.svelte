@@ -1,9 +1,11 @@
 <script>
   import { onMount } from "svelte";
-  import * as zebar from "zebar";
   import Network from "./lib/Network.svelte";
+  import GlazeWmWorkspaces from "./lib/GlazeWmWorkspaces.svelte";
+  import GlazeWmModes from "./lib/GlazeWmModes.svelte";
+  import { createProviderGroup } from "zebar";
 
-  const providers = zebar.createProviderGroup({
+  const providers = createProviderGroup({
     network: { type: "network" },
     glazewm: { type: "glazewm" },
     cpu: { type: "cpu" },
@@ -11,23 +13,51 @@
     battery: { type: "battery" },
     memory: { type: "memory" },
   });
-
-  $: output = providers.outputMap;
-  onMount(() => providers.onOutput(() => output = providers.outputMap));
-
+  /**
+   * @type {{ network: import("zebar").NetworkOutput | null; glazewm: import("zebar").GlazeWmOutput | null; cpu: import("zebar").CpuOutput | null; date: import("zebar").DateOutput | null; battery: import("zebar").BatteryOutput | null; memory: import("zebar").MemoryOutput | null; }}
+   */
+  let output;
+  $: providers.onOutput(() => (output = providers.outputMap));
 </script>
 
-<div>
-  <div class="left">
+{#if output}
+  <div class="bar">
+    <div class="left">
+      <GlazeWmWorkspaces glazewm={output.glazewm} />
+    </div>
+    <div class="center">
 
+    </div>
+    <div class="right">
+      <GlazeWmModes glazewm={output.glazewm} />
+      <Network network={output.network} />
+    </div>
   </div>
-  <div class="center">
-
-  </div>
-  <div class="right">
-    <Network networkOutput={output.network}/>
-  </div>
-</div>
+{/if}
 
 <style>
+  .bar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    height: 100%;
+    padding: 4px 1.5vw;
+  }
+
+  .left,
+  .center,
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .center {
+    justify-self: center;
+    border: 1px 0px solid var(--lavender);
+  }
+
+  .right {
+    justify-self: end;
+  }
 </style>
