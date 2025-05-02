@@ -29,5 +29,5 @@
     --crust: #11111b;
 
     --warn: var(--peach);
-    --alert: #f72460;
+    --severe-warning: #f72460;
 }

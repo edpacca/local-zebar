@@ -5,12 +5,12 @@ i {
     color: var(--lavender);
 }
 
-.warn {
+.warn:not(.severe-warning) {
   color: var(--warn) !important;
 }
 
-.alert {
-  color: var(--alert) !important;
+.severe-warning {
+  color: var(--severe-warning) !important;
 }
 
 body {

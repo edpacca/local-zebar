@@ -9,5 +9,5 @@
     iconClass={iconClassMemory}
     value={Math.round(memory.usage)}
     isPercentage={true}
-    alertValue={95}
+    severeWarningValue={95}
 />

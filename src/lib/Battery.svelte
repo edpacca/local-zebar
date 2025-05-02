@@ -27,7 +27,7 @@
     <IconValue
         iconClass={iconClassChargeAmount}
         warningValue={30}
-        alertValue={15}
+        severeWarningValue={15}
         warnAbove={false}
         isPercentage={true}
         value={Math.round(battery.chargePercent)}

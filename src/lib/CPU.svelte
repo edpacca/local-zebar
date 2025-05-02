@@ -10,5 +10,5 @@
     value={Math.round(cpu.usage)}
     isPercentage={true}
     warningValue={65}
-    alertValue={85}
+    severeWarningValue={85}
 />
