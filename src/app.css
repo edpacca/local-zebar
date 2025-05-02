@@ -5,11 +5,11 @@ i {
     color: var(--lavender);
 }
 
-i.warn {
+.warn {
   color: var(--warn);
 }
 
-i.alert {
+.alert {
   color: var(--alert);
 }
 
