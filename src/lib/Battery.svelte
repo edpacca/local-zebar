@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { BatteryOutput } from "zebar";
+    import IconValue from "./IconValue.svelte";
 
     export let battery: BatteryOutput;
 
@@ -14,17 +15,23 @@
         if (percentage > 40)
             return "2";
         if (percentage > 20)
-            return "1 warn";
-        return "0 alert";
+            return "1";
+        return "0";
     }
 </script>
 
 <div class="flex-gap battery">
-    {#if battery.isCharging || true}
+    {#if battery.isCharging}
         <i class={iconClassIsCharging}></i>
     {/if}
-    <i class={iconClassChargeAmount}></i>
-    {Math.round(battery.chargePercent)}
+    <IconValue
+        iconClass={iconClassChargeAmount}
+        warningValue={30}
+        alertValue={15}
+        warnAbove={false}
+        isPercentage={true}
+        value={Math.round(battery.chargePercent)}
+    />
 </div>
 
 <style>
