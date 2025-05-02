@@ -6,11 +6,11 @@ i {
 }
 
 .warn {
-  color: var(--warn);
+  color: var(--warn) !important;
 }
 
 .alert {
-  color: var(--alert);
+  color: var(--alert) !important;
 }
 
 body {
@@ -55,5 +55,5 @@ button:hover {
 .flex-gap {
     display: flex;
     flex-direction: row;
-    gap: 3px;
+    gap: 4px;
 }
