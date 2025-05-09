@@ -7,6 +7,9 @@
     const iconNameWifi = "wifi_strength";
     const iconNameNoConnection = "wifi_strength_off_outline";
     const iconNameError = "wifi_strength_alert_outline";
+    const iconNameHidden = "nf nf-fa-dungeon";
+
+    let isHidingIp = false;
 
     $: iconClass = getIconClass(network);
     $: ssid = network?.defaultGateway?.ssid;
@@ -45,18 +48,36 @@
         }
         return `${iconNameWifi}_${wifiIconValue(defaultGateway.signalStrength)}`;
     };
+
+    const toggleHidingIp = () => {
+        isHidingIp = !isHidingIp;
+    }
 </script>
 
 <div class="network">
     <i class={`nf nf-md-${iconClass}`}></i>
-    {ssid} |
-    <span>
-        {ipaddr}
-    </span>
+    <button onclick={toggleHidingIp}>
+        {#if isHidingIp}
+        <span><i class={iconNameHidden}></i></span>
+        {:else}
+        {ssid} | <span>{ipaddr}</span>
+    {/if}
+    </button>
 </div>
 
 <style>
     span {
         color: var(--subtext0);
+    }
+
+    button {
+        background: none;
+        border: none;
+        border-radius: 2px;
+    }
+
+    button:hover {
+        background: var(--surface0);
+        color: var(--teal);
     }
 </style>
