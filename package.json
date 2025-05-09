@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "install_config": "cp -r dist/ ~/.glzr/zebar/local-zebar/ && cp local-zebar.zebar.json ~/.glzr/zebar/local-zebar",
+    "build": "vite build && npm run install_config",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
-		"test": "vitest --run"
+    "test": "vitest --run"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
