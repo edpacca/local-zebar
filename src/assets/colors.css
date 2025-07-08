@@ -30,4 +30,8 @@
 
     --warn: var(--peach);
     --severe-warning: #f72460;
+
+    /* RDP colors */
+    --base: #2e1e2b;
+    --surface1: #5a4555;
 }
