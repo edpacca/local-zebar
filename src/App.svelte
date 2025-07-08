@@ -6,8 +6,10 @@
     import Battery from "./lib/Battery.svelte";
     import Cpu from "./lib/CPU.svelte";
     import Memory from "./lib/Memory.svelte";
-    import Media from "./lib/Media.svelte";
+    import SongInfo from "./lib/SongInfo.svelte";
     import Audio from "./lib/Audio.svelte";
+    import Vlc from "./lib/VLC.svelte";
+    // import Keyboard from "./lib/Keyboard.svelte";
 
     const providers = createProviderGroup({
         network: { type: "network" },
@@ -17,7 +19,7 @@
         battery: { type: "battery" },
         memory: { type: "memory" },
         media: { type: "media" },
-        audio: { type: "audio"}
+        audio: { type: "audio" },
     });
     /**
      * @type {{ network: import("zebar").NetworkOutput | null; glazewm: import("zebar").GlazeWmOutput | null; cpu: import("zebar").CpuOutput | null; date: import("zebar").DateOutput | null; battery: import("zebar").BatteryOutput | null; memory: import("zebar").MemoryOutput | null; media: import("zebar").MediaOutput | null; audio: import("zebar").AudioOutput | null; }}
@@ -35,22 +37,26 @@
         </div>
         <div class="right">
             <div class="lr-border media">
-                {#each output.media?.allSessions ?? [] as session }
-                    <Media session={session}/>
+                {#each output.media?.allSessions ?? [] as session}
+                    <SongInfo artist={session.artist} title={session.title}/>
                 {/each}
+                <!-- <Vlc/> -->
                 {#if output.audio}
-                    <Audio audio={output.audio}/>
-                {:else}
-                    <div>no audio</div>
+                    <Audio audio={output.audio} />
                 {/if}
             </div>
-            {#if output.glazewm}
-                <GlazeWmModes glazewm={output.glazewm} />
-            {/if}
-            {#if output.network}
-                <Network network={output.network} />
-            {/if}
-            <div class="diagnostics lr-border">
+            <div class="flex-gap">
+                {#if output.glazewm}
+                    <div class="state-indicators">
+                        <!-- <Keyboard/> -->
+                        <GlazeWmModes glazewm={output.glazewm} />
+                    </div>
+                    {/if}
+                {#if output.network}
+                    <Network network={output.network} />
+                {/if}
+            </div>
+            <div class="lr-border diagnostics">
                 {#if output.memory}
                     <Memory memory={output.memory} />
                 {/if}
@@ -71,32 +77,43 @@
 <style>
     .bar {
         display: grid;
-        grid-template-columns: 1fr auto;
+        grid-template-columns: auto 1fr;
         align-items: center;
         height: 100%;
         padding: 4px;
     }
 
     .left,
-    .right, .media {
+    .right,
+    .media {
         display: flex;
         align-items: center;
         flex-direction: row;
         gap: 16px;
     }
-
     .left {
-        flex-grow: 1.5;
+        width: max-content;
+        flex-shrink: 0;
+    }
+
+    .right {
+        display: grid;
+        grid-template-columns: 1fr auto auto auto;
+        justify-self: end;
+        padding-right: 8px;
+    }
+
+    .media {
+        min-width: 0;
+    }
+
+    .state-indicators {
+        padding-right: 8px;
     }
 
     .diagnostics {
         display: flex;
         flex-direction: row;
         gap: 12px;
-    }
-
-    .right {
-        justify-self: end;
-        padding-right: 8px;
     }
 </style>
