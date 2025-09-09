@@ -3,7 +3,7 @@
 
   export let network: NetworkOutput;
 
-  const iconNameEthernet = "ethernet-cable";
+  const iconNameEthernet = "nf nf-fa-ethernet";
   const iconNameWifi = "wifi_strength";
   const iconNameNoConnection = "wifi_strength_off_outline";
   const iconNameError = "wifi_strength_alert_outline";
@@ -58,15 +58,17 @@
 
 <div class="flex-gap">
   <i class={`nf nf-md-${iconClass}`}></i>
-  <button onclick={toggleHidingIp}>
-    {#if isHidingIp}
-      <span><i class={iconNameHidden}></i></span>
-    {:else}
-      {ssid} | <span>{ipaddr}</span> |
-    {/if}
-  </button>
+  {#if ssid}
+    <button onclick={toggleHidingIp}>
+      {#if isHidingIp}
+        <span><i class={iconNameHidden}></i></span>
+      {:else}
+        {ssid} | <span>{ipaddr}</span> |
+      {/if}
+    </button>
+  {/if}
   <div class="traffic">
-      {trafficUp} / {trafficDown}
+    {trafficUp} / {trafficDown}
   </div>
 </div>
 
@@ -76,7 +78,7 @@
   }
 
   .flex-gap {
-    gap: 2px;
+    gap: 4px;
   }
 
   .traffic {
@@ -89,7 +91,7 @@
     gap: 0px;
   }
 
-  lbutton {
+  button {
     background: none;
     border: none;
     border-radius: 2px;

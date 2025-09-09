@@ -21,6 +21,6 @@
   },
   "dependencies": {
     "vitest": "^3.1.2",
-    "zebar": "^2.7.0"
+    "zebar": "^3.1.1"
   }
 }
