@@ -36,8 +36,8 @@
     }
 
     .volume-bar {
-        border-radius: 5px;
-        height: 10px;
+        border-radius: 4px;
+        height: 8px;
         background-color: var(--teal);
     }
 

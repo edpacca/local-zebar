@@ -49,6 +49,7 @@
     <div class="left">
       {#if output.glazewm}
         <GlazeWmWorkspaces glazewm={output.glazewm} />
+        <GlazeWmModes glazewm={output.glazewm} />
       {/if}
     </div>
     <div class="right">
@@ -64,18 +65,10 @@
           <Audio audio={output.audio} />
         {/if}
       </div>
-      <div class="flex-gap">
-        {#if output.glazewm}
-          <div class="state-indicators">
-            <!-- <Keyboard/> -->
-            <GlazeWmModes glazewm={output.glazewm} />
-          </div>
-        {/if}
+      <div class="r-border diagnostics">
         {#if output.network}
           <Network network={output.network} />
         {/if}
-      </div>
-      <div class="lr-border diagnostics">
         {#if output.memory}
           <Memory memory={output.memory} />
         {/if}
@@ -86,11 +79,9 @@
           <Battery battery={output.battery} />
         {/if}
       </div>
-      <div class="r-border">
         {#if output.systray}
           <SysTray systray={output.systray} allowedIds={allowedSystrayIds} />
         {/if}
-      </div>
       <div>
         {output.date?.formatted}
       </div>
@@ -129,10 +120,6 @@
 
   .media {
     min-width: 0;
-  }
-
-  .state-indicators {
-    padding-right: 8px;
   }
 
   .diagnostics {

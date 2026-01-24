@@ -15,7 +15,7 @@ i {
 
 body {
     color: var(--text);
-    font-family: ui-monospace, monospace;
+    font-family: JetBrainsMono, ui-monospace, monospace;
     font-size: 12px;
     overflow: hidden;
 }
@@ -74,13 +74,18 @@ button:hover {
 }
 
 .subtext {
-    color: var(--subtext0);
+color: var(--subtext0);
 }
 
 .italic {
-    font-style: italic;
+font-style: italic;
 }
 
 .bold {
-    font-weight: 800;
+font-weight: 800;
 }
+
+button.focused i,
+button.workspace:hover i {
+    color: var(--base) !important;
+  }

@@ -79,6 +79,7 @@
 
   .flex-gap {
     gap: 4px;
+    align-content: center;
   }
 
   .traffic {

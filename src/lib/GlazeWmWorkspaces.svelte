@@ -1,5 +1,7 @@
 <script lang="ts">
   import type { GlazeWmOutput } from "zebar";
+  import type { Workspace } from "glazewm";
+  import WorkspaceNameIcon from "./WorkspaceNameIcon.svelte";
 
   export let glazewm: GlazeWmOutput;
 
@@ -15,9 +17,8 @@
       onclick={() => focusWorkspace(workspace.name)}
       class="workspace"
       class:focused={workspace.hasFocus}
-      class:displayed={workspace.isDisplayed}
-    >
-      {workspace.displayName ?? workspace.name}
+      class:displayed={workspace.isDisplayed}>
+      <WorkspaceNameIcon workspace={workspace}/>
     </button>
   {/each}
 </div>
@@ -48,3 +49,4 @@
     color: var(--base);
   }
 </style>
+

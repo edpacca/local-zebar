@@ -32,7 +32,9 @@
 <style>
     .icon-value {
         gap: 2px;
-        display: flex;
-        flex-direction: row;
+        display: grid 1fr auto;
+        align-items: center;
+        /* display: flex;
+        flex-direction: row; */
     }
 </style>
